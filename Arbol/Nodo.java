@@ -2,7 +2,7 @@ package Arbol;
 
 import java.util.ArrayList;
 
-public class Nodo implements Comparable<Nodo> {
+public class Nodo {
 
 	Comparable valor;
 	// HIJOS
@@ -47,7 +47,7 @@ public class Nodo implements Comparable<Nodo> {
 		return padre;
 	}
 
-	public void agregarNodo(Comparable<Comparable<Comparable<Comparable>>> valor) {
+	public void agregarNodo(Comparable valor) {
 		// Si el valor que me pasan por parametro es mayor que yo (va a la derecha)
 		if (valor.compareTo(this.valor) > 0) {
 			if (der == null) { // si el valor de la derecha es nulo, creo el nodo y me paso como padre
@@ -77,21 +77,42 @@ public class Nodo implements Comparable<Nodo> {
 
 	//los ordena de menor a mayor
 	//Si quisiera imprimirlos de mayor a menor tengo que empezar imprimiendo los de la derecha
-	public ArrayList<Comparable> recorrer() {
+//	1. incorporar en un vector todos los elementos en forma ordenada ascendentemente.
+	public ArrayList<Comparable> recorrerAscendente() {
 		ArrayList<Comparable> elementosEnOrden = new ArrayList<>();
 		// Imprimo lo que hay a la izq
 		if (izq != null) {
-			elementosEnOrden.addAll(izq.recorrer());
+			elementosEnOrden.addAll(izq.recorrerAscendente());
 		}
 		// Me imprimo yo
 		elementosEnOrden.add(this.valor);
 		// Imprimo lo que hay a la derecha
 		if (der != null) {
-			elementosEnOrden.addAll(der.recorrer());
+			elementosEnOrden.addAll(der.recorrerAscendente());
 		}
 		return elementosEnOrden;
 	}
 
+//	2. incorporar en un vector todos los elementos en forma ordenada descendentemente.
+	public ArrayList<Comparable> recorrerDescendente() {
+		ArrayList<Comparable> elementosEnOrden = new ArrayList<>();
+
+		
+		// Imprimo lo que hay a la derecha
+		if (der != null) {
+			elementosEnOrden.addAll(der.recorrerDescendente());
+		}
+		// Me imprimo yo
+				elementosEnOrden.add(this.valor);
+				
+		// Imprimo lo que hay a la izq
+		if (izq != null) {
+			elementosEnOrden.addAll(izq.recorrerDescendente());
+		}
+		return elementosEnOrden;
+	}
+
+	
 	@Override
 	public String toString() {
 		return this.valor + " " + "( izq: " + this.izq + " der: " + this.der + ") ";
@@ -112,11 +133,21 @@ public class Nodo implements Comparable<Nodo> {
 	 * "HOJAS" } } } }
 	 */
 
-	@Override
-	public int compareTo(Nodo o) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	//3. contar la cantidad de elementos del árbol
+	public int contarElementos() {
+		ArrayList<Comparable> aux = new ArrayList<>();
+		if(izq != null) {
+			aux.addAll(izq.recorrerAscendente());
+		}
+		if(der != null) {
+		aux.addAll(der.recorrerDescendente());
+		}
+		aux.add(this.valor);
+		return aux.size();
 	}
+
+
 
 	/*
 	 * @Override public int compareTo(Nodo o) { //Compara por valor numerico return

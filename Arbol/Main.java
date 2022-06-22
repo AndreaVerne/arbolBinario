@@ -33,21 +33,31 @@ public class Main {
 		
 		
 		
-		/*
-		 * ArbolBinario animales = new ArbolBinario();
-		 * 
-		 * Nodo raizAnimales = new Nodo("gato"); animales.setRaiz(raiz); //
-		 * numeros.addValor("gato"); animales.addValor("canario");
-		 * animales.addValor("perro"); animales.addValor("conejo");
-		 * animales.addValor("liebre"); animales.addValor("jabali");
-		 * animales.addValor("carpincho"); animales.addValor("zorro");
-		 * animales.addValor("aguilucho");
-		 * 
-		 * //imprimo nodo raiz System.out.println(raizAnimales); //imprimo nodo ordenado
-		 * System.out.println(animales.recorrer()); //imprimo el arbol
-		 * System.out.println(animales);
-		 * 
-		 */
+		
+		  ArbolBinario animales = new ArbolBinario();
+		  
+		 Nodo raizAnimales = new Nodo("gato");
+		 animales.setRaiz(raizAnimales); 
+		animales.addValor("gato"); 
+		animales.addValor("canario");
+		  animales.addValor("perro");
+		  animales.addValor("conejo");
+		  animales.addValor("liebre");
+		  animales.addValor("jabali");
+		  animales.addValor("carpincho"); 
+		  animales.addValor("zorro");
+		  animales.addValor("aguilucho");
+		  
+		  //imprimo nodo raiz 
+		  System.out.println(raizAnimales); 
+		  //imprimo nodo ordenado
+		 // System.out.println(animales.recorrer());
+		  //imprimo el arbol
+	 System.out.println(animales);
+	 System.out.println(animales.contarElementos());
+		  
+	 System.out.println(animales.recorrerDescendente());
+		 
 	}
 
 }
